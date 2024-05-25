@@ -22,8 +22,8 @@ import java.util.Random;
 
 public class GrawWisielca extends Application {
     private final ArrayList<String> easyWords = new ArrayList<>();
-    private final ArrayList<String> mediumWords = new ArrayList<>();
-    private final ArrayList<String> hardWords = new ArrayList<>();
+    private ArrayList<String> mediumWords = new ArrayList<>();
+    private ArrayList<String> hardWords = new ArrayList<>();
     private int totalWins = 0;
     private int totalLosses = 0;
 
@@ -79,6 +79,7 @@ public class GrawWisielca extends Application {
 
         root.setCenter(infoBox);
 
+        // Ustawienie koloru tła na niebieski
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
 
         Scene scene = new Scene(root, 600, 300);
@@ -114,18 +115,14 @@ public class GrawWisielca extends Application {
     }
 
     private void updateLabels() {
-        wordLabel.setText("Word: " + hiddenWord.toString());
+        wordLabel.setText("Word: " + hiddenWord);
         attemptsLabel.setText("Attempts left: " + attemptsLeft);
-        guessedLabel.setText("Guessed letters: " + guessedLetters.toString());
+        guessedLabel.setText("Guessed letters: " + guessedLetters);
     }
 
     private void makeGuess() {
         if (attemptsLeft > 0 && hiddenWord.toString().contains("_")) {
-            String guessText = guessField.getText().trim();
-            if (guessText.isEmpty()) {
-                return;
-            }
-            char guess = guessText.charAt(0);
+            char guess = guessField.getText().charAt(0);
             guessField.clear();
 
             if (guessedLetters.contains(guess)) {
@@ -150,11 +147,11 @@ public class GrawWisielca extends Application {
             if (!hiddenWord.toString().contains("_")) {
                 totalWins++;
                 showWinMessage();
-                startNewGame("easy");
+                startNewGame("easy"); // Powrót do poziomu łatwego
             } else if (attemptsLeft == 0) {
                 totalLosses++;
                 showLossMessage();
-                startNewGame("easy");
+                startNewGame("easy"); // Powrót do poziomu łatwego
             }
         }
     }
@@ -184,6 +181,7 @@ public class GrawWisielca extends Application {
     }
 
     private void initializeWords() {
+        // Dodaj słowa do odpowiednich poziomów trudności
         easyWords.add("java");
         easyWords.add("code");
         easyWords.add("learn");
@@ -217,24 +215,32 @@ public class GrawWisielca extends Application {
 
         switch (attemptsLeft) {
             case 5:
+                // Draw base
                 gc.strokeLine(10, 190, 190, 190);
                 break;
             case 4:
+                // Draw pole
                 gc.strokeLine(50, 190, 50, 10);
                 break;
             case 3:
+                // Draw top beam
                 gc.strokeLine(50, 10, 150, 10);
                 break;
             case 2:
+                // Draw rope
                 gc.strokeLine(150, 10, 150, 30);
                 break;
             case 1:
+                // Draw head
                 gc.strokeOval(140, 30, 20, 20);
                 break;
             case 0:
+                // Draw body
                 gc.strokeLine(150, 50, 150, 100);
+                // Draw arms
                 gc.strokeLine(150, 60, 130, 80);
                 gc.strokeLine(150, 60, 170, 80);
+                // Draw legs
                 gc.strokeLine(150, 100, 130, 140);
                 gc.strokeLine(150, 100, 170, 140);
                 break;
