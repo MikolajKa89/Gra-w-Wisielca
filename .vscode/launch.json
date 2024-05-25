@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GrawWisielca",
+            "request": "launch",
+            "mainClass": "GrawWisielca",
+            "projectName": "Gra-w-Wisielca_59bafb40"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
@@ -15,7 +22,8 @@
             "name": "App",
             "request": "launch",
             "mainClass": "App",
-            "projectName": "Gra-w-Wisielca_59bafb40"
+            "projectName": "Gra-w-Wisielca_59bafb40",
+            "vmArgs": "--module-path c:\\Java\\javafx-sdk-22.0.1\\lib --add-modules=javafx.controls,javafx.fxml"
         }
     ]
 }
